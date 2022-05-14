@@ -1,9 +1,13 @@
 <template>
-  <v-container class="fill-height">
-    <v-container class="message-list">
+  <v-container>
+    <v-container ref="messageListRef" class="message-list" onresize="onSizeChanged()">
       <Balloon direction="left">
-        「Wiki しりとりAI」は、
-        gooラボのひらがな化APIを使用しています。
+        <p>ルール</p>
+        <ul>
+          <li>「ん」でも返します</li>
+          <li>英語や漢字は読み間違えます</li>
+          <li>ガバガバだけど許してくださいおねがいします</li>
+        </ul>
       </Balloon>
       <template v-for="balloon in balloons">
         <Balloon :direction="balloon.dir">
@@ -48,6 +52,7 @@ export default Vue.extend({
       this.say({text: "「しりとり」", dir: "left", url: wikiPageURL + "20287"});
     }
   },
+
   data() {
     return {
       inProcessing:false,
@@ -61,6 +66,7 @@ export default Vue.extend({
     }
   },
   methods: {
+
     onKeyDown(e: KeyboardEvent) {
       if (e.key === "Enter") {
         this.send()
@@ -204,7 +210,10 @@ export default Vue.extend({
 
     },
     say(balloonSay: BalloonSay) {
-      this.balloons.push(balloonSay)
+      this.balloons.push(balloonSay);
+      this.$nextTick(()=>{
+        (this.$refs.messageListRef as any).scrollTop=(this.$refs.messageListRef as any).scrollHeight
+      })
     },
     saveData() {
       let data = {

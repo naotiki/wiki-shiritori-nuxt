@@ -8,8 +8,8 @@ const config: NuxtConfig = {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - nuxt-wiki-shiritori',
-    title: 'nuxt-wiki-shiritori',
+    titleTemplate: '%s - Wikiしりとり',
+    title: 'Wikiしりとり',
     htmlAttrs:{
       lang:'ja'
     },
@@ -59,7 +59,9 @@ const config: NuxtConfig = {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'ja'
+      lang: 'ja',
+      name:"Wikipediaしりとり",
+      short_name:"Wikiしりとり",
     }
   },
 
