@@ -1,5 +1,5 @@
 <template>
-  <v-row dense align="center" class="message-box" v-if="direction==='left'">
+  <v-row dense align="center" class="message-box-l" v-if="direction==='left'">
     <v-col cols="auto" class="text-center">
       <v-icon x-large>
         mdi-account-circle-outline
@@ -11,9 +11,7 @@
     </v-col>
     <v-spacer></v-spacer>
   </v-row>
-
-
-  <v-row dense align="center" class="text-right message-box" v-else-if="direction==='right'">
+  <v-row dense align="center" class="text-right message-box-r" v-else-if="direction==='right'">
     <v-spacer></v-spacer>
     <v-col cols="auto" class="message-text-r">
       <slot></slot>
@@ -28,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import Vue, {PropOptions, PropType} from 'vue'
+import Vue, {PropType} from 'vue'
 
 export default Vue.extend({
   name: "Balloon",
@@ -43,9 +41,14 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.message-box {
+
+.message-box-r{
   flex-wrap: nowrap;
-  margin: auto;
+  padding-left: 50px;
+}
+.message-box-l{
+  flex-wrap: nowrap;
+  padding-right: 50px;
 }
 
 .message-text-l {

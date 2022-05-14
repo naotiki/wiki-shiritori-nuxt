@@ -1,17 +1,21 @@
 <template>
-  <v-container>
-    <v-container v-for="balloon in balloons">
-      <Balloon :direction="balloon.dir">
-        <a :href="balloon.url" target="_blank" rel="noopener noreferrer" v-if="balloon.url">{{ balloon.text }}</a>
-        <template v-else>{{ balloon.text }}</template>
+  <v-container class="fill-height">
+    <v-container class="message-list">
+      <Balloon direction="left">
+        「Wiki しりとりAI」は、
+        gooラボのひらがな化APIを使用しています。
       </Balloon>
-
-
+      <template v-for="balloon in balloons">
+        <Balloon :direction="balloon.dir">
+          <a :href="balloon.url" target="_blank" rel="noopener noreferrer" v-if="balloon.url">{{ balloon.text }}</a>
+          <template v-else>{{ balloon.text }}</template>
+        </Balloon>
+      </template>
     </v-container>
 
     <v-text-field :placeholder="`「${nextWord}」から始まる言葉`" v-model="inputText" @keydown="onKeyDown">
       <template v-slot:append-outer>
-        <v-btn icon :disabled="!inputText" @click="send" color="blue">
+        <v-btn icon :disabled="!inputText||inProcessing" @click="send" color="blue">
           <v-icon>
             mdi-send
           </v-icon>
@@ -22,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import Vue, {VNode} from "vue";
+import Vue from "vue";
 import Balloon from "~/components/Balloon.vue";
 import toUpper, {hiraToKana, kanaToHira} from "~/scripts/HiraganaConverter";
 
@@ -46,6 +50,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      inProcessing:false,
       inputText: "",
       histories: [{
         word: "しりとり",
@@ -57,15 +62,18 @@ export default Vue.extend({
   },
   methods: {
     onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Enter"&&this.inputText) {
+      if (e.key === "Enter") {
         this.send()
       }
     },
     //働き者
     send() {
+      if (!this.inputText||this.inProcessing) return
+      this.inProcessing=true
       this.say({text: `「${this.inputText}」`, dir: "right"})
       this.shiritoriLogic(this.inputText).finally(() => {
         this.inputText = "";
+        this.inProcessing=false
       })
     },
     async shiritoriLogic(input: string) {
@@ -105,7 +113,7 @@ export default Vue.extend({
           lastLetters = await this.parseString(cpuWord, false)
         } while (lastLetters[0] === "ん")
       }
-      this.nextWord = lastLetters[0]
+      this.nextWord = toUpper(lastLetters[0])
       this.say({
         text: `「${cpuWord}」`,
         dir: "left",
@@ -128,7 +136,7 @@ export default Vue.extend({
           pssearch: query,
           pslimit: 200,
           psnamespace: 0,
-          origin:"*"
+          origin: "*"
         }
       })
       for (const prefixSearch of res.query.prefixsearch) {
@@ -192,7 +200,7 @@ export default Vue.extend({
         }
       }
 
-      return [toUpper(hiraganaStr.slice(range[0], range[1])), toUpper(hiraToKana(hiraganaStr.slice(range[0], range[1])))]
+      return [toUpper(hiraganaStr.slice(range[0], range[1])), hiraToKana(toUpper(hiraganaStr.slice(range[0], range[1])))]
 
     },
     say(balloonSay: BalloonSay) {
@@ -249,5 +257,8 @@ export default Vue.extend({
 
 </script>
 <style>
-
+ .message-list{
+   overflow-y: scroll;
+   height: 70vh;
+ }
 </style>
