@@ -35,7 +35,7 @@ import Balloon from "~/components/Balloon.vue";
 import toUpper, {hiraToKana, kanaToHira} from "~/scripts/HiraganaConverter";
 
 const wikiPageURL = "https://ja.wikipedia.org/?curid="
-const dbName = "wiki_siritori_history";
+const dbName = "wiki_shiritori_history";
 export default Vue.extend({
 
   components: {Balloon},
@@ -248,7 +248,7 @@ export default Vue.extend({
      * */
     async toHiragana(str: string) {
       const data = await this.$axios.$post<HiraganaAPI>("https://labs.goo.ne.jp/api/hiragana", {
-        app_id: "***REMOVED***",
+        app_id:this.$config.gooLabAppId,
         sentence: str,
         output_type: "hiragana"
       }, {
@@ -268,6 +268,6 @@ export default Vue.extend({
 <style>
  .message-list{
    overflow-y: scroll;
-   height: 70vh;
+   height: 60vh;
  }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <v-row dense align="center" class="message-box-l" v-if="direction==='left'">
-    <v-col cols="auto" class="text-center">
+    <v-col  cols="auto" class="text-center">
       <v-icon x-large>
         mdi-account-circle-outline
       </v-icon>

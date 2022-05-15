@@ -83,7 +83,9 @@ const config: NuxtConfig = {
       }
     }
   },
-
+  publicRuntimeConfig: {
+    gooLabAppId: process.env.GOOLAB_APPID,
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
