@@ -1,7 +1,7 @@
 <template>
   <v-row v-if="direction === 'left'" dense align="center" class="message-box-l">
     <v-col cols="auto" class="text-center">
-      <v-icon x-large> mdi-account-circle-outline </v-icon>
+      <v-icon x-large>mdi-account-circle-outline</v-icon>
       <p class="text-center">Wiki AI</p>
     </v-col>
     <v-col cols="auto" class="message-text-l">
@@ -13,32 +13,33 @@
     v-else-if="direction === 'right'"
     dense
     align="center"
-    class="text-right message-box-r"
-  >
+    class="text-right message-box-r">
     <v-spacer></v-spacer>
     <v-col cols="auto" class="message-text-r">
       <slot></slot>
     </v-col>
     <v-col cols="auto" class="text-center">
-      <v-icon x-large color="blue"> mdi-account-circle-outline </v-icon>
+      <v-icon x-large color="blue">mdi-account-circle-outline</v-icon>
       <p class="text-center">あなた</p>
     </v-col>
   </v-row>
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import {PropType} from "vue"
 
-export default Vue.extend({
-  name: "Balloon",
+export default {
+  name: "BalloonBox",
   props: {
     direction: {
       type: String as PropType<Dir>,
       required: true,
     },
   },
-  methods: {},
-});
+  methods: {
+
+  },
+}
 </script>
 
 <style scoped>

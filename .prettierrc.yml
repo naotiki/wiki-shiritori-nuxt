@@ -1,3 +1,6 @@
 endOfLine: lf
 singleQuote: false
-bracketSpacing: true
+bracketSameLine: true
+bracketSpacing: false
+semi: false
+htmlWhitespaceSensitivity: ignore

@@ -5,19 +5,18 @@
       <v-list>
         <v-list-item @click.stop="aboutDialog = true">
           <v-list-item-action>
-            <v-icon> mdi-information</v-icon>
+            <v-icon>mdi-information</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title> Wikiしりとりについて</v-list-item-title>
+            <v-list-item-title>Wikiしりとりについて</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/naotiki/wiki-shiritori-nuxt"
-        >
+          href="https://github.com/naotiki/wiki-shiritori-nuxt">
           <v-list-item-action>
-            <v-icon> mdi-github</v-icon>
+            <v-icon>mdi-github</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>wiki-shiritori-nuxt</v-list-item-title>
@@ -26,13 +25,11 @@
         <v-list-item
           target="_blank"
           rel="noopener noreferrer"
-          href="http://www.goo.ne.jp/"
-        >
+          href="http://www.goo.ne.jp/">
           <v-list-item-content>
             <v-img
               src="http://u.xgoo.jp/img/sgoo.png"
-              alt="supported by goo"
-            ></v-img>
+              alt="supported by goo"></v-img>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -43,26 +40,29 @@
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/naotiki/wiki-shiritori-nuxt"
-          >Wikiしりとり</a
-          >について
+            href="https://github.com/naotiki/wiki-shiritori-nuxt">
+            Wikiしりとり
+          </a>
+          について
         </v-card-title>
-        <v-card-subtitle
-        >by
+        <v-card-subtitle>
+          by
           <a
             href="https://github.com/naotiki/"
             target="_blank"
-            rel="noopener noreferrer"
-          >Naotiki</a
-          ></v-card-subtitle
-        >
+            rel="noopener noreferrer">
+            Naotiki
+          </a>
+        </v-card-subtitle>
         <v-card-text class="text-pre-line">
-          「Wiki しりとりAI」は、 gooラボの<a
-          href="https://labs.goo.ne.jp/api/jp/hiragana-translation/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >ひらがな化API</a
-        >を使用しています。 「ん」でも返してきます。クソ強いです。
+          「Wiki しりとりAI」は、 gooラボの
+          <a
+            href="https://labs.goo.ne.jp/api/jp/hiragana-translation/"
+            target="_blank"
+            rel="noopener noreferrer">
+            ひらがな化API
+          </a>
+          を使用しています。 「ん」でも返してきます。クソ強いです。
           バグが起きたらあなたの勝ちです。
           漢字の読み間違いは仕様なので許してください。
         </v-card-text>
@@ -79,15 +79,16 @@
     </v-main>
 
     <v-footer app>
-      <span
-      >&copy;<a
-        href="https://github.com/naotiki/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Naotiki</a
-      >
-        {{ new Date().getFullYear() }}</span
-      >
+      <span>
+        &copy;
+        <a
+          href="https://github.com/naotiki/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Naotiki
+        </a>
+        {{ new Date().getFullYear() }}
+      </span>
     </v-footer>
   </v-app>
 </template>
@@ -103,11 +104,11 @@ export default {
         {
           icon: "mdi-apps",
           title: "しりとり",
-          to: "/"
-        }
+          to: "/",
+        },
       ],
-      title: "Vuetify.js"
-    };
-  }
-};
+      title: "Vuetify.js",
+    }
+  },
+}
 </script>
